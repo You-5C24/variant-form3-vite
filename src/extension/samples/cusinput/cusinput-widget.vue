@@ -46,14 +46,14 @@
 </template>
 
 <script>
-import FormItemWrapper from "./form-item-wrapper";
+import FormItemWrapper from "@/components/form-designer/form-widget/field-widget/form-item-wrapper";
 import emitter from "@/utils/emitter";
 import i18n, { translate } from "@/utils/i18n";
 import fieldMixin from "@/components/form-designer/form-widget/field-widget/fieldMixin";
 import SvgIcon from "@/components/svg-icon/index";
 
 export default {
-  name: "input-widget",
+  name: "cusinput-widget",
   componentName: "FieldWidget", //必须固定为FieldWidget，用于接收父级组件的broadcast事件
   mixins: [emitter, fieldMixin, i18n],
   props: {
@@ -129,5 +129,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../../../styles/global.scss"; /* form-item-wrapper已引入，还需要重复引入吗？ */
+@import "../../../styles/global.scss"; /* form-item-wrapper已引入，还需要重复引入吗？ */
 </style>
