@@ -21,7 +21,10 @@ import {
 import AlertWidget from "@/extension/samples/alert/alert-widget";
 import CusinputWidget from "@/extension/samples/cusinput/cusinput-widget";
 import { registerFWGenerator } from "@/utils/sfc-generator";
-import { alertTemplateGenerator } from "@/extension/samples/extension-sfc-generator";
+import {
+  alertTemplateGenerator,
+  cusInputTemplateGenerator,
+} from "@/extension/samples/extension-sfc-generator";
 
 export const loadExtension = function (app) {
   /**
@@ -85,12 +88,8 @@ export const loadExtension = function (app) {
    * 5. 加载完毕。
    */
   addCustomWidgetSchema(alertSchema); //加载组件Json Schema
-  // TODO:L 动态加载处理
-  addCustomWidgetSchema(cusinputSchema1);
-  addCustomWidgetSchema(cusinputSchema2);
   /* -------------------------------------------------- */
   app.component(AlertWidget.name, AlertWidget); //注册组件../
-  app.component(CusinputWidget.name, CusinputWidget);
   /* -------------------------------------------------- */
   PERegister.registerCPEditor(
     app,
@@ -179,4 +178,10 @@ export const loadExtension = function (app) {
   registerFWGenerator("alert", alertTemplateGenerator); //注册字段组件的代码生成器
   /* -------------------------------------------------- */
   /* 字段组件加载完毕 end */
+
+  // TODO: 动态加载处理
+  addCustomWidgetSchema(cusinputSchema1);
+  addCustomWidgetSchema(cusinputSchema2);
+  app.component(CusinputWidget.name, CusinputWidget);
+  registerFWGenerator("cusinput", cusInputTemplateGenerator);
 };

@@ -21,7 +21,7 @@ export const genVue3JS = function (formConfig, widgetList) {
 
   const activeTabs = buildActiveTabs(formConfig, widgetList);
 
-  const v3JSTemplate = `  import { defineComponent, toRefs, reactive, getCurrentInstance } from 'vue'
+  const v3JSTemplate = `import { defineComponent, toRefs, reactive, getCurrentInstance } from 'vue'
   
   export default defineComponent({
     components: {},
