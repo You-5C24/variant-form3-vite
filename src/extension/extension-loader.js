@@ -16,7 +16,6 @@ import { cardTemplateGenerator } from "@/extension/samples/extension-sfc-generat
 import {
   alertSchema,
   cusinputSchema1,
-  cusinputSchema2,
 } from "@/extension/samples/extension-schema";
 import AlertWidget from "@/extension/samples/alert/alert-widget";
 import CusinputWidget from "@/extension/samples/cusinput/cusinput-widget";
@@ -181,7 +180,6 @@ export const loadExtension = function (app) {
 
   // TODO: 动态加载处理
   addCustomWidgetSchema(cusinputSchema1);
-  addCustomWidgetSchema(cusinputSchema2);
   app.component(CusinputWidget.name, CusinputWidget);
   registerFWGenerator("cusinput", cusInputTemplateGenerator);
 };

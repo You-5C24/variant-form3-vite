@@ -127,6 +127,7 @@ export function createDesigner(vueInstance) {
         return;
       }
 
+      console.log(selected);
       this.selectedWidget = selected;
       if (!!selected.id) {
         this.selectedId = selected.id;
@@ -905,7 +906,6 @@ export function createDesigner(vueInstance) {
       let newWidget = deepClone(origin);
       let tempId = generateId();
       newWidget.id = newWidget.type.replace(/-/g, "") + tempId;
-      console.log(newWidget, "haha");
       //console.log('test id===', newWidget.id)
       newWidget.options.name = newWidget.id;
       newWidget.options.label =

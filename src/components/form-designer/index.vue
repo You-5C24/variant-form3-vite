@@ -127,19 +127,10 @@ export default {
       vFormVersion: VARIANT_FORM_VERSION,
       curLangName: "",
       curLocale: "",
-
       vsCodeFlag: false,
       caseName: "",
-
-      docUrl: "https://www.vform666.com/document3.html",
-      gitUrl: "https://github.com/vform666/variant-form3-vite",
-      chatUrl: "https://www.vform666.com/pages/chat-group/",
-      subScribeUrl: "https://www.vform666.com/pages/pro/",
-
       scrollerHeight: 0,
-
       designer: createDesigner(this),
-
       fieldList: [],
     };
   },

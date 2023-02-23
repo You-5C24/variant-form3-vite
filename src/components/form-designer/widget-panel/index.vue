@@ -156,6 +156,37 @@
                 </template>
               </draggable>
             </el-collapse-item>
+            <el-collapse-item
+              name="5"
+              :title="i18nt('designer.attrFieldTitle')"
+            >
+              <draggable
+                tag="ul"
+                :list="attrFields"
+                item-key="key"
+                :group="{ name: 'dragGroup', pull: 'clone', put: false }"
+                :move="checkFieldMove"
+                :clone="handleFieldWidgetClone"
+                ghost-class="ghost"
+                :sort="false"
+              >
+                <template #item="{ element: fld }">
+                  <li
+                    class="field-widget-item"
+                    :title="fld.displayName"
+                    @dblclick="addFieldByDbClick(fld)"
+                  >
+                    <span>
+                      <svg-icon
+                        :icon-class="fld.icon"
+                        class-name="color-svg-icon"
+                      />
+                      {{ fld.options.label }}
+                    </span>
+                  </li>
+                </template>
+              </draggable>
+            </el-collapse-item>
           </el-collapse>
         </el-tab-pane>
         <!-- 表单模版 -->
@@ -208,9 +239,11 @@ import {
   basicFields as BFS,
   advancedFields as AFS,
   customFields as CFS,
+  attrFields as ATFS,
 } from "./widgetsConfig";
 import { formTemplates } from "./templatesConfig";
 import { addWindowResizeHandler, generateId } from "@/utils/util";
+import { getInputFieldConfig } from "./attrFieldConfig";
 import i18n from "@/utils/i18n";
 import axios from "axios";
 import SvgIcon from "@/components/svg-icon/index";
@@ -242,12 +275,14 @@ export default {
 
       scrollerHeight: 0,
 
-      activeNames: ["1", "2", "3", "4"],
+      activeNames: ["1", "2", "3", "4", "5"],
 
       containers: [],
       basicFields: [],
       advancedFields: [],
       customFields: [],
+      attrFields: [],
+      tempAttrFiledList: [],
 
       formTemplates: formTemplates,
       // ftImages: [
@@ -262,20 +297,63 @@ export default {
       // ]
     };
   },
-  computed: {
-    //
+  watch: {
+    // 特性字段根据 props 传入的特性决定
+    tempAttrFiledList: {
+      handler(val) {
+        val.map((item) => {
+          const temp = getInputFieldConfig(item.name);
+          temp.basic = item;
+          this.attrFields.push(temp);
+        });
+      },
+      deep: true,
+    },
   },
   created() {
     this.loadWidgets();
+    setTimeout(() => {
+      this.tempAttrFiledList = [
+        {
+          id: "27466608057271338",
+          name: "更新时间",
+          code: "UPDATE_TIME",
+          valueType: "描述型",
+          public: true,
+          speciesId: "27466605935445024",
+          belongId: "358227208847888384",
+          authId: "361356410044420096",
+          status: 1,
+          createUser: "366950229284622336",
+          updateUser: "366950229284622336",
+          version: "1",
+          createTime: "2023-02-14 22:09:12.121",
+          updateTime: "2023-02-14 22:09:12.121",
+        },
+        {
+          id: "27466608057271339",
+          name: "单据编号",
+          code: "BILL_CODE",
+          valueType: "描述型",
+          public: true,
+          speciesId: "27466605935445024",
+          belongId: "358227208847888384",
+          authId: "361356410044420096",
+          status: 1,
+          createUser: "366950229284622336",
+          updateUser: "366950229284622336",
+          version: "1",
+          createTime: "2023-02-14 22:09:12.121",
+          updateTime: "2023-02-14 22:09:12.121",
+        },
+      ];
+    }, 500);
   },
   mounted() {
-    //this.loadWidgets()
-
     this.scrollerHeight = window.innerHeight - 56 + "px";
     addWindowResizeHandler(() => {
       this.$nextTick(() => {
         this.scrollerHeight = window.innerHeight - 56 + "px";
-        //console.log(this.scrollerHeight)
       });
     });
   },
@@ -333,6 +411,18 @@ export default {
       });
 
       this.customFields = CFS.map((fld) => {
+        return {
+          key: generateId(),
+          ...fld,
+          displayName: this.i18n2t(
+            `designer.widgetLabel.${fld.type}`,
+            `extension.widgetLabel.${fld.type}`
+          ),
+        };
+      }).filter((fld) => {
+        return !this.isBanned(fld.type);
+      });
+      this.arrtFields = ATFS.map((fld) => {
         return {
           key: generateId(),
           ...fld,
