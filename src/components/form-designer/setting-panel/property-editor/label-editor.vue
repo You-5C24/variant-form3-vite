@@ -1,7 +1,8 @@
 <template>
   <el-form-item :label="i18nt('designer.setting.label')" v-if="!noLabelSetting">
     <el-input
-      type="text"
+      link
+      type="primary"
       v-model="optionModel.label"
       :disabled="optionModel.fromAttr"
     ></el-input>

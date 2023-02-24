@@ -9,7 +9,7 @@ export const createInputTextEditor = function (propName, propLabelKey) {
     render(h) {
       return (
         <el-form-item label={translate(propLabelKey)}>
-          <el-input type="text" v-model={this.optionModel[propName]} />
+          <el-input link type="primary" v-model={this.optionModel[propName]} />
         </el-form-item>
       )
     }
@@ -33,7 +33,7 @@ export const createInputNumberEditor = function (propName, propLabelKey) {
     render(h) {
       return (
           <el-form-item label={translate(propLabelKey)}>
-            <el-input-number type="text" v-model={this.optionModel[propName]}
+            <el-input-number link type="primary" v-model={this.optionModel[propName]}
                              onChange={this.updateValue} style="width: 100%" />
           </el-form-item>
       )
