@@ -62,6 +62,7 @@ import "@/components/form-designer/form-widget/container-widget/index";
 import FieldComponents from "@/components/form-designer/form-widget/field-widget/index";
 import i18n from "@/utils/i18n";
 import { useAttrFieldsStore } from "@/store/index";
+import { mapActions } from "pinia";
 
 export default {
   name: "VFormWidget",
@@ -99,7 +100,6 @@ export default {
   inject: ["getDesignerConfig"],
   data() {
     return {
-      store: useAttrFieldsStore(),
       formModel: {},
       widgetRefList: {},
     };
@@ -156,6 +156,11 @@ export default {
     this.designer.registerFormWidget(this);
   },
   methods: {
+    ...mapActions(useAttrFieldsStore, [
+      "initAttrFieldList",
+      "delAttrFieldList",
+      "addAttrFieldList",
+    ]),
     getWidgetName(widget) {
       return widget.type + "-widget";
     },
@@ -178,9 +183,7 @@ export default {
     onDragAdd(evt) {
       const newIndex = evt.newIndex;
       if (!!this.designer.widgetList[newIndex]) {
-        this.store.delAttrFieldList(
-          this.designer.widgetList[newIndex].options.label
-        );
+        this.delAttrFieldList(this.designer.widgetList[newIndex].options.label);
         this.designer.setSelected(this.designer.widgetList[newIndex]);
       }
 

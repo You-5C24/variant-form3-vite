@@ -103,6 +103,7 @@
 import i18n from "@/utils/i18n";
 import SvgIcon from "@/components/svg-icon";
 import { useAttrFieldsStore } from "@/store/index";
+import { mapActions } from "pinia";
 
 export default {
   name: "form-item-wrapper",
@@ -111,11 +112,6 @@ export default {
     SvgIcon,
   },
 
-  data() {
-    return {
-      store: useAttrFieldsStore(),
-    };
-  },
   props: {
     field: Object,
     designer: Object,
@@ -209,6 +205,11 @@ export default {
     //
   },
   methods: {
+    ...mapActions(useAttrFieldsStore, [
+      "initAttrFieldList",
+      "delAttrFieldList",
+      "addAttrFieldList",
+    ]),
     selectField(field) {
       if (!!this.designer) {
         this.designer.setSelected(field);
@@ -250,7 +251,7 @@ export default {
         this.$nextTick(() => {
           const delField = this.parentList.splice(this.indexOfParentList, 1)[0];
           if (delField.options.fromAttr) {
-            this.store.addAttrFieldList(delField);
+            this.addAttrFieldList(delField);
           }
           this.designer.setSelected(nextSelected);
 

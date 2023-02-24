@@ -2,7 +2,7 @@
   <el-container class="main-container full-height">
     <el-container>
       <el-aside class="side-panel">
-        <widget-panel :designer="designer" :attrFields="attrFields" />
+        <widget-panel :designer="designer" :attrFields="attrFieldList" />
       </el-aside>
 
       <el-container class="center-layout-container">
@@ -65,6 +65,7 @@ import i18n, { changeLocale } from "@/utils/i18n";
 import axios from "axios";
 import SvgIcon from "@/components/svg-icon/index";
 import { useAttrFieldsStore } from "@/store/index";
+import { mapState, mapActions } from "pinia";
 
 export default {
   name: "VFormDesigner",
@@ -125,7 +126,6 @@ export default {
   },
   data() {
     return {
-      store: useAttrFieldsStore(),
       vFormVersion: VARIANT_FORM_VERSION,
       curLangName: "",
       curLocale: "",
@@ -148,17 +148,15 @@ export default {
     // 特性字段根据 props 传入的特性决定
     tempAttrFiledList: {
       handler(val) {
-        this.store.initAttrFieldList(val);
-
+        // this.store.initAttrFieldList(val);
+        this.initAttrFieldList(val);
         this.fixInitAttrFields();
       },
       deep: true,
     },
   },
   computed: {
-    attrFields() {
-      return this.store.attrFieldList;
-    },
+    ...mapState(useAttrFieldsStore, ["attrFieldList"]),
   },
   created() {
     this.vsCodeFlag = getQueryParam("vscode") == 1;
@@ -214,12 +212,17 @@ export default {
     this.loadFieldListFromServer();
   },
   methods: {
+    ...mapActions(useAttrFieldsStore, [
+      "initAttrFieldList",
+      "delAttrFieldList",
+      "addAttrFieldList",
+    ]),
     fixInitAttrFields() {
       const historyAttrFieldNames = this.getInitAttrFields(
         this.designer.widgetList
       );
       historyAttrFieldNames.forEach((fieldName) => {
-        this.store.delAttrFieldList(fieldName);
+        this.delAttrFieldList(fieldName);
       });
     },
     getInitAttrFields(list) {

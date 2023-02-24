@@ -96,7 +96,7 @@ import FieldComponents from "@/components/form-designer/form-widget/field-widget
 import refMixinDesign from "@/components/form-designer/refMixinDesign";
 import SvgIcon from "@/components/svg-icon";
 import { useAttrFieldsStore } from "@/store";
-
+import { mapActions } from "pinia";
 export default {
   name: "GridColWidget",
   componentName: "GridColWidget",
@@ -120,7 +120,6 @@ export default {
   },
   data() {
     return {
-      store: useAttrFieldsStore(),
       layoutProps: {
         span: this.widget.options.span || 12,
         // md: this.widget.options.md || 12,
@@ -226,6 +225,11 @@ export default {
     this.initLayoutProps();
   },
   methods: {
+    ...mapActions(useAttrFieldsStore, [
+      "initAttrFieldList",
+      "delAttrFieldList",
+      "addAttrFieldList",
+    ]),
     initLayoutProps() {
       if (!!this.widget.options.responsive) {
         let lyType = this.designer.formConfig.layoutType;
@@ -249,7 +253,7 @@ export default {
       const newIndex = evt.newIndex;
       const attrName = evt.item.innerText;
       if (!!subList[newIndex]) {
-        this.store.delAttrFieldList(attrName.trim());
+        this.delAttrFieldList(attrName.trim());
         this.designer.setSelected(subList[newIndex]);
       }
 

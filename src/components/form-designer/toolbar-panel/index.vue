@@ -48,7 +48,7 @@
       /></el-button>
     </div>
 
-    <el-drawer
+    <!-- <el-drawer
       :title="i18nt('designer.toolbar.nodeTreeTitle')"
       direction="ltr"
       v-model="showNodeTreeDrawerFlag"
@@ -67,7 +67,7 @@
         icon-class="el-icon-arrow-right"
         @node-click="onNodeTreeClick"
       ></el-tree>
-    </el-drawer>
+    </el-drawer> -->
 
     <div class="right-toolbar" :style="{ width: toolbarWidth + 'px' }">
       <div class="right-toolbar-con">
