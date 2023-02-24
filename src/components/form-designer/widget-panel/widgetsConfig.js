@@ -13,30 +13,30 @@ export const containers = [
     },
   },
 
-  {
-    type: "table",
-    category: "container",
-    icon: "table",
-    rows: [],
-    options: {
-      name: "",
-      hidden: false,
-      customClass: "", //自定义css类名
-    },
-  },
+  // {
+  //   type: "table",
+  //   category: "container",
+  //   icon: "table",
+  //   rows: [],
+  //   options: {
+  //     name: "",
+  //     hidden: false,
+  //     customClass: "", //自定义css类名
+  //   },
+  // },
 
-  {
-    type: "tab",
-    category: "container",
-    icon: "tab",
-    displayType: "border-card",
-    tabs: [],
-    options: {
-      name: "",
-      hidden: false,
-      customClass: "", //自定义css类名
-    },
-  },
+  // {
+  //   type: "tab",
+  //   category: "container",
+  //   icon: "tab",
+  //   displayType: "border-card",
+  //   tabs: [],
+  //   options: {
+  //     name: "",
+  //     hidden: false,
+  //     customClass: "", //自定义css类名
+  //   },
+  // },
 
   {
     type: "grid-col",

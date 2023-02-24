@@ -149,6 +149,8 @@ export default {
     tempAttrFiledList: {
       handler(val) {
         this.store.initAttrFieldList(val);
+
+        this.fixInitAttrFields();
       },
       deep: true,
     },
@@ -212,6 +214,36 @@ export default {
     this.loadFieldListFromServer();
   },
   methods: {
+    fixInitAttrFields() {
+      const historyAttrFieldNames = this.getInitAttrFields(
+        this.designer.widgetList
+      );
+      historyAttrFieldNames.forEach((fieldName) => {
+        this.store.delAttrFieldList(fieldName);
+      });
+    },
+    getInitAttrFields(list) {
+      const historyAttrFields = [];
+      this.getAttrFieldFromGrid(list, historyAttrFields);
+
+      const historyAttrFieldNames = historyAttrFields.map(
+        (item) => item.options.label
+      );
+
+      return historyAttrFieldNames;
+    },
+    getAttrFieldFromGrid(list, historyAttrFields) {
+      list.map((col) => {
+        if (col.category) {
+          this.getAttrFieldFromGrid(
+            col.type === "grid-col" ? col.widgetList : col.cols,
+            historyAttrFields
+          );
+        } else {
+          col.options.fromAttr && historyAttrFields.push(col);
+        }
+      });
+    },
     testEEH(eventName, eventParams) {
       console.log("test", eventName);
       console.log("test222222", eventParams);
