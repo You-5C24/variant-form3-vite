@@ -2,7 +2,7 @@
   <el-container class="main-container full-height">
     <el-container>
       <el-aside class="side-panel">
-        <widget-panel :designer="designer" />
+        <widget-panel :designer="designer" :attrFields="attrFields" />
       </el-aside>
 
       <el-container class="center-layout-container">
@@ -64,6 +64,7 @@ import { MOCK_CASE_URL, VARIANT_FORM_VERSION } from "@/utils/config";
 import i18n, { changeLocale } from "@/utils/i18n";
 import axios from "axios";
 import SvgIcon from "@/components/svg-icon/index";
+import { useAttrFieldsStore } from "@/store/index";
 
 export default {
   name: "VFormDesigner",
@@ -124,6 +125,7 @@ export default {
   },
   data() {
     return {
+      store: useAttrFieldsStore(),
       vFormVersion: VARIANT_FORM_VERSION,
       curLangName: "",
       curLocale: "",
@@ -132,6 +134,7 @@ export default {
       scrollerHeight: 0,
       designer: createDesigner(this),
       fieldList: [],
+      tempAttrFiledList: [],
     };
   },
   provide() {
@@ -141,9 +144,59 @@ export default {
       getBannedWidgets: () => this.bannedWidgets,
     };
   },
+  watch: {
+    // 特性字段根据 props 传入的特性决定
+    tempAttrFiledList: {
+      handler(val) {
+        this.store.initAttrFieldList(val);
+      },
+      deep: true,
+    },
+  },
+  computed: {
+    attrFields() {
+      return this.store.attrFieldList;
+    },
+  },
   created() {
     this.vsCodeFlag = getQueryParam("vscode") == 1;
     this.caseName = getQueryParam("case");
+    setTimeout(() => {
+      this.tempAttrFiledList = [
+        {
+          id: "27466608057271338",
+          name: "更新时间",
+          code: "UPDATE_TIME",
+          valueType: "描述型",
+          public: true,
+          speciesId: "27466605935445024",
+          belongId: "358227208847888384",
+          authId: "361356410044420096",
+          status: 1,
+          createUser: "366950229284622336",
+          updateUser: "366950229284622336",
+          version: "1",
+          createTime: "2023-02-14 22:09:12.121",
+          updateTime: "2023-02-14 22:09:12.121",
+        },
+        {
+          id: "27466608057271339",
+          name: "单据编号",
+          code: "BILL_CODE",
+          valueType: "描述型",
+          public: true,
+          speciesId: "27466605935445024",
+          belongId: "358227208847888384",
+          authId: "361356410044420096",
+          status: 1,
+          createUser: "366950229284622336",
+          updateUser: "366950229284622336",
+          version: "1",
+          createTime: "2023-02-14 22:09:12.121",
+          updateTime: "2023-02-14 22:09:12.121",
+        },
+      ];
+    }, 500);
   },
   mounted() {
     this.initLocale();

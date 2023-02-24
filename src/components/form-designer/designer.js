@@ -1,11 +1,3 @@
-/**
- * author: vformAdmin
- * email: vdpadmin@163.com
- * website: https://www.vform666.com
- * date: 2021.08.18
- * remark: 如果要分发VForm源码，需在本文件顶部保留此文件头信息！！
- */
-
 import {
   deepClone,
   generateId,
@@ -127,7 +119,6 @@ export function createDesigner(vueInstance) {
         return;
       }
 
-      console.log(selected);
       this.selectedWidget = selected;
       if (!!selected.id) {
         this.selectedId = selected.id;

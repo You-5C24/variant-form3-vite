@@ -1,13 +1,3 @@
-<!--
-/**
- * author: vformAdmin
- * email: vdpadmin@163.com
- * website: https://www.vform666.com
- * date: 2021.08.18
- * remark: 如果要分发VForm源码，需在本文件顶部保留此文件头信息！！
- */
--->
-
 <template>
   <div
     class="field-wrapper"
@@ -112,12 +102,19 @@
 <script>
 import i18n from "@/utils/i18n";
 import SvgIcon from "@/components/svg-icon";
+import { useAttrFieldsStore } from "@/store/index";
 
 export default {
   name: "form-item-wrapper",
   mixins: [i18n],
   components: {
     SvgIcon,
+  },
+
+  data() {
+    return {
+      store: useAttrFieldsStore(),
+    };
   },
   props: {
     field: Object,
@@ -251,10 +248,11 @@ export default {
         }
 
         this.$nextTick(() => {
-          this.parentList.splice(this.indexOfParentList, 1);
-          //if (!!nextSelected) {
+          const delField = this.parentList.splice(this.indexOfParentList, 1)[0];
+          if (delField.options.fromAttr) {
+            this.store.addAttrFieldList(delField);
+          }
           this.designer.setSelected(nextSelected);
-          //}
 
           this.designer.emitHistoryChange();
         });

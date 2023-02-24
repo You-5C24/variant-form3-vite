@@ -26,7 +26,9 @@
                 <el-form-item
                   label="组件"
                   style="margin-top: 16px"
-                  v-if="selectedWidget.options.fromAttr"
+                  v-if="
+                    selectedWidget.options && selectedWidget.options.fromAttr
+                  "
                 >
                   <el-select v-model="selectedWidget.type">
                     <el-option

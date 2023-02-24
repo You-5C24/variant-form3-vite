@@ -243,7 +243,6 @@ import {
 } from "./widgetsConfig";
 import { formTemplates } from "./templatesConfig";
 import { addWindowResizeHandler, generateId } from "@/utils/util";
-import { getInputFieldConfig } from "./attrFieldConfig";
 import i18n from "@/utils/i18n";
 import axios from "axios";
 import SvgIcon from "@/components/svg-icon/index";
@@ -265,89 +264,25 @@ export default {
   },
   props: {
     designer: Object,
+    attrFields: Array,
   },
   inject: ["getBannedWidgets", "getDesignerConfig"],
   data() {
     return {
       designerConfig: this.getDesignerConfig(),
-
       firstTab: "componentLib",
-
       scrollerHeight: 0,
-
       activeNames: ["1", "2", "3", "4", "5"],
-
       containers: [],
       basicFields: [],
       advancedFields: [],
       customFields: [],
-      attrFields: [],
-      tempAttrFiledList: [],
-
       formTemplates: formTemplates,
-      // ftImages: [
-      //   {imgUrl: ftImg1},
-      //   {imgUrl: ftImg2},
-      //   {imgUrl: ftImg3},
-      //   {imgUrl: ftImg4},
-      //   {imgUrl: ftImg5},
-      //   {imgUrl: ftImg6},
-      //   {imgUrl: ftImg7},
-      //   {imgUrl: ftImg8},
-      // ]
     };
   },
-  watch: {
-    // 特性字段根据 props 传入的特性决定
-    tempAttrFiledList: {
-      handler(val) {
-        val.map((item) => {
-          const temp = getInputFieldConfig(item.name);
-          temp.basic = item;
-          this.attrFields.push(temp);
-        });
-      },
-      deep: true,
-    },
-  },
+  watch: {},
   created() {
     this.loadWidgets();
-    setTimeout(() => {
-      this.tempAttrFiledList = [
-        {
-          id: "27466608057271338",
-          name: "更新时间",
-          code: "UPDATE_TIME",
-          valueType: "描述型",
-          public: true,
-          speciesId: "27466605935445024",
-          belongId: "358227208847888384",
-          authId: "361356410044420096",
-          status: 1,
-          createUser: "366950229284622336",
-          updateUser: "366950229284622336",
-          version: "1",
-          createTime: "2023-02-14 22:09:12.121",
-          updateTime: "2023-02-14 22:09:12.121",
-        },
-        {
-          id: "27466608057271339",
-          name: "单据编号",
-          code: "BILL_CODE",
-          valueType: "描述型",
-          public: true,
-          speciesId: "27466605935445024",
-          belongId: "358227208847888384",
-          authId: "361356410044420096",
-          status: 1,
-          createUser: "366950229284622336",
-          updateUser: "366950229284622336",
-          version: "1",
-          createTime: "2023-02-14 22:09:12.121",
-          updateTime: "2023-02-14 22:09:12.121",
-        },
-      ];
-    }, 500);
   },
   mounted() {
     this.scrollerHeight = window.innerHeight - 56 + "px";
