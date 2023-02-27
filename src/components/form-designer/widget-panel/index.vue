@@ -10,7 +10,6 @@
               {{ i18nt("designer.componentLib") }}</span
             >
           </template>
-
           <el-collapse v-model="activeNames" class="widget-collapse">
             <el-collapse-item
               name="1"
@@ -48,7 +47,37 @@
                 </template>
               </draggable>
             </el-collapse-item>
-
+            <el-collapse-item
+              name="5"
+              :title="i18nt('designer.attrFieldTitle')"
+            >
+              <draggable
+                tag="ul"
+                :list="attrFields"
+                item-key="key"
+                :group="{ name: 'dragGroup', pull: 'clone', put: false }"
+                :move="checkFieldMove"
+                :clone="handleFieldWidgetClone"
+                ghost-class="ghost"
+                :sort="false"
+              >
+                <template #item="{ element: fld }">
+                  <li
+                    class="field-widget-item"
+                    :title="fld.displayName"
+                    @dblclick="addFieldByDbClick(fld)"
+                  >
+                    <span>
+                      <svg-icon
+                        :icon-class="fld.icon"
+                        class-name="color-svg-icon"
+                      />
+                      {{ fld.options.label }}
+                    </span>
+                  </li>
+                </template>
+              </draggable>
+            </el-collapse-item>
             <el-collapse-item
               name="2"
               :title="i18nt('designer.basicFieldTitle')"
@@ -121,7 +150,7 @@
               </draggable>
             </el-collapse-item>
 
-            <el-collapse-item
+            <!-- <el-collapse-item
               name="4"
               :title="i18nt('designer.customFieldTitle')"
             >
@@ -155,38 +184,7 @@
                   </li>
                 </template>
               </draggable>
-            </el-collapse-item>
-            <el-collapse-item
-              name="5"
-              :title="i18nt('designer.attrFieldTitle')"
-            >
-              <draggable
-                tag="ul"
-                :list="attrFields"
-                item-key="key"
-                :group="{ name: 'dragGroup', pull: 'clone', put: false }"
-                :move="checkFieldMove"
-                :clone="handleFieldWidgetClone"
-                ghost-class="ghost"
-                :sort="false"
-              >
-                <template #item="{ element: fld }">
-                  <li
-                    class="field-widget-item"
-                    :title="fld.displayName"
-                    @dblclick="addFieldByDbClick(fld)"
-                  >
-                    <span>
-                      <svg-icon
-                        :icon-class="fld.icon"
-                        class-name="color-svg-icon"
-                      />
-                      {{ fld.options.label }}
-                    </span>
-                  </li>
-                </template>
-              </draggable>
-            </el-collapse-item>
+            </el-collapse-item> -->
           </el-collapse>
         </el-tab-pane>
         <!-- 表单模版 -->

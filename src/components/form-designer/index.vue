@@ -117,6 +117,10 @@ export default {
         };
       },
     },
+    attrList: {
+      type: Array,
+      default: () => [],
+    },
 
     /* 全局数据源变量 */
     globalDsv: {
@@ -146,9 +150,15 @@ export default {
   },
   watch: {
     // 特性字段根据 props 传入的特性决定
+    attrList: {
+      handler(val) {
+        this.initAttrFieldList(val);
+        this.fixInitAttrFields();
+      },
+      deep: true,
+    },
     tempAttrFiledList: {
       handler(val) {
-        // this.store.initAttrFieldList(val);
         this.initAttrFieldList(val);
         this.fixInitAttrFields();
       },

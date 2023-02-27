@@ -30,7 +30,10 @@
                     selectedWidget.options && selectedWidget.options.fromAttr
                   "
                 >
-                  <el-select v-model="selectedWidget.type">
+                  <el-select
+                    v-model="selectedWidget.adaptType"
+                    @change="changeFieldWidget"
+                  >
                     <el-option
                       v-for="item in options"
                       :key="item.value"
@@ -228,6 +231,10 @@ import eventBus from "@/utils/event-bus";
 import emitter from "@/utils/emitter";
 import { propertyRegistered } from "@/components/form-designer/setting-panel/propertyRegister";
 import { widgetsOpts } from "../widget-panel/attrFieldConfig";
+import {
+  getFieldType,
+  getFieldOptions,
+} from "@/components/form-designer/widget-panel/attrFieldConfig";
 const { COMMON_PROPERTIES, ADVANCED_PROPERTIES, EVENT_PROPERTIES } =
   WidgetProperties;
 
@@ -253,7 +260,7 @@ export default {
   data() {
     return {
       designerConfig: this.getDesignerConfig(),
-
+      activeAdaptType: null,
       options: widgetsOpts,
       scrollerHeight: 0,
 
@@ -289,6 +296,9 @@ export default {
       handler(val) {
         if (!!val) {
           this.activeTab = "1";
+          if (val.options.fromAttr) {
+            this.activeAdaptType = val.adaptType;
+          }
         }
       },
     },
@@ -334,6 +344,17 @@ export default {
     });
   },
   methods: {
+    changeFieldWidget(val) {
+      const idnum = this.selectedWidget.id.match(/[0-9]+/)[0];
+      this.selectedWidget.type = getFieldType(val);
+      this.selectedWidget.id = `${this.selectedWidget.type}${idnum}`;
+      this.selectedWidget.icon = `${this.selectedWidget.type}-field`;
+      this.selectedWidget.options = getFieldOptions(
+        val,
+        this.selectedWidget.options.label,
+        this.selectedWidget.id
+      );
+    },
     showEventCollapse() {
       if (this.designerConfig["eventCollapse"] === undefined) {
         return true;
