@@ -296,7 +296,7 @@ export default {
       handler(val) {
         if (!!val) {
           this.activeTab = "1";
-          if (val.options.fromAttr) {
+          if (val.options?.fromAttr) {
             this.activeAdaptType = val.adaptType;
           }
         }

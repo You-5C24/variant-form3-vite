@@ -47,7 +47,7 @@
         <svg-icon icon-class="node-tree"
       /></el-button>
     </div>
-
+    <!-- class="node-tree-drawer" -->
     <el-drawer
       :title="i18nt('designer.toolbar.nodeTreeTitle')"
       direction="ltr"
@@ -55,7 +55,6 @@
       :modal="true"
       :size="280"
       :destroy-on-close="true"
-      class="node-tree-drawer"
     >
       <el-tree
         ref="nodeTree"
