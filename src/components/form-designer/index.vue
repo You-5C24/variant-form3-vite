@@ -157,13 +157,13 @@ export default {
       },
       deep: true,
     },
-    tempAttrFiledList: {
-      handler(val) {
-        this.initAttrFieldList(val);
-        this.fixInitAttrFields();
-      },
-      deep: true,
-    },
+    // tempAttrFiledList: {
+    //   handler(val) {
+    //     this.initAttrFieldList(val);
+    //     this.fixInitAttrFields();
+    //   },
+    //   deep: true,
+    // },
   },
   computed: {
     ...mapState(useAttrFieldsStore, ["attrFieldList"]),

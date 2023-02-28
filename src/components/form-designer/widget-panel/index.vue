@@ -78,7 +78,7 @@
                 </template>
               </draggable>
             </el-collapse-item>
-            <el-collapse-item
+            <!-- <el-collapse-item
               name="2"
               :title="i18nt('designer.basicFieldTitle')"
             >
@@ -112,9 +112,9 @@
                   </li>
                 </template>
               </draggable>
-            </el-collapse-item>
+            </el-collapse-item> -->
 
-            <el-collapse-item
+            <!-- <el-collapse-item
               name="3"
               :title="i18nt('designer.advancedFieldTitle')"
             >
@@ -148,7 +148,7 @@
                   </li>
                 </template>
               </draggable>
-            </el-collapse-item>
+            </el-collapse-item> -->
 
             <!-- <el-collapse-item
               name="4"
