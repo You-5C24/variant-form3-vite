@@ -52,6 +52,7 @@
             </div>
           </template>
         </draggable>
+        <slot name="childTable"></slot>
       </div>
     </el-form>
   </div>

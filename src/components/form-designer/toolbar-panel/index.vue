@@ -114,7 +114,7 @@
         >
           {{ i18nt("designer.toolbar.exportCode") }}</el-button
         >
-        <el-button
+        <!-- <el-button
           v-if="showToolButton('generateSFCButton')"
           link
           type="primary"
@@ -123,10 +123,11 @@
           <svg-icon icon-class="vue-sfc" />{{
             i18nt("designer.toolbar.generateSFC")
           }}</el-button
-        >
-        <template v-for="(idx, slotName) in $slots">
+        > -->
+        <!-- <template v-for="(idx, slotName) in $slots">
           <slot :name="slotName"></slot>
-        </template>
+        </template> -->
+        <slot name="customToolButtons"></slot>
       </div>
     </div>
 

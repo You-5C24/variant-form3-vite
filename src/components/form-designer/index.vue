@@ -12,8 +12,8 @@
             :global-dsv="globalDsv"
             ref="toolbarRef"
           >
-            <template v-for="(idx, slotName) in $slots" #[slotName]>
-              <slot :name="slotName"></slot>
+            <template #customToolButtons>
+              <slot name="customToolButtons"></slot>
             </template>
           </toolbar-panel>
         </el-header>
@@ -28,6 +28,13 @@
               :global-dsv="globalDsv"
               ref="formRef"
             >
+              <!-- <template v-for="(idx, slotName) in $slots" #[slotName]>
+                <slot :name="slotName"></slot>
+              </template> -->
+
+              <template #childTable>
+                <slot name="childTable"></slot>
+              </template>
             </v-form-widget>
           </el-scrollbar>
         </el-main>

@@ -1,7 +1,7 @@
 export const getInputFieldConfig = (name) => {
   return {
     type: "input",
-    adaptType: "input",
+    adaptType: "text",
     icon: "text-field",
     formItemFlag: true,
     options: {
@@ -53,7 +53,7 @@ export const getInputFieldConfig = (name) => {
 
 export const getFieldType = (adaptType) => {
   const typeMap = {
-    input: "input",
+    text: "input",
     textarea: "textarea",
     number: "number",
     date: "date",
@@ -65,7 +65,7 @@ export const getFieldType = (adaptType) => {
 
 export const getFieldOptions = (adaptType, label, name) => {
   switch (adaptType) {
-    case "input": {
+    case "text": {
       return {
         fromAttr: true, // 判断特性标签
         name,
@@ -273,7 +273,7 @@ export const getFieldOptions = (adaptType, label, name) => {
 export const widgetsOpts = [
   {
     label: "文本",
-    value: "input",
+    value: "text",
   },
   {
     label: "多行文本",
