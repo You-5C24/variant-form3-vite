@@ -9,6 +9,7 @@
         <el-header class="toolbar-header">
           <toolbar-panel
             :designer="designer"
+            :childTableData="childTableData"
             :global-dsv="globalDsv"
             ref="toolbarRef"
           >
@@ -125,6 +126,11 @@ export default {
       },
     },
     attrList: {
+      type: Array,
+      default: () => [],
+    },
+
+    childTableData: {
       type: Array,
       default: () => [],
     },
