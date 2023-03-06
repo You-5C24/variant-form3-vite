@@ -46,10 +46,6 @@
         </template>
       </template>
     </el-form>
-    <ChildTableView
-      v-if="childTableData.length"
-      :childTableData="childTableData"
-    />
   </div>
 </template>
 
@@ -57,7 +53,6 @@
 //import ElForm from 'element-ui/packages/form/src/form.vue'  /* 用于源码调试Element UI */
 import emitter from "@/utils/emitter";
 import "./container-item/index";
-import ChildTableView from "./childTableview.vue";
 import FieldComponents from "@/components/form-designer/form-widget/field-widget/index";
 import {
   generateId,
@@ -77,7 +72,6 @@ export default {
   mixins: [emitter, i18n],
   components: {
     //ElForm,
-    ChildTableView,
     ...FieldComponents,
   },
   props: {
