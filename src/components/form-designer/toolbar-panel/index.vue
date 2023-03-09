@@ -167,7 +167,6 @@
               :preview-state="true"
               :option-data="testOptionData"
               :global-dsv="designerDsv"
-              :childTableData="childTableData"
               @myEmitTest="onMyEmitTest"
               @appendButtonClick="testOnAppendButtonClick"
               @buttonClick="testOnButtonClick"
@@ -513,7 +512,6 @@ export default {
   },
   props: {
     designer: Object,
-    childTableData: Array,
     globalDsv: {
       type: Object,
       default: () => ({}),

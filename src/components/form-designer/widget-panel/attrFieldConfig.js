@@ -58,6 +58,14 @@ export const getFieldType = (adaptType) => {
     number: "number",
     date: "date",
     dateRange: "date-range",
+    color: "color",
+    select: "select",
+    radio: "radio",
+    checkbox: "checkbox",
+    switch: "switch",
+    person: "select",
+    dept: "select",
+    group: "select",
   };
 
   return typeMap[adaptType];
@@ -265,6 +273,318 @@ export const getFieldOptions = (adaptType, label, name) => {
         onValidate: "",
       };
     }
+    case "color": {
+      return {
+        fromAttr: true, // 判断特性标签
+        name,
+        label,
+        labelAlign: "",
+        defaultValue: null,
+        columnWidth: "200px",
+        size: "",
+        labelWidth: null,
+        labelHidden: false,
+        disabled: false,
+        hidden: false,
+        required: false,
+        requiredHint: "",
+        validation: "",
+        validationHint: "",
+        //-------------------
+        customClass: "", //自定义css类名
+        labelIconClass: null,
+        labelIconPosition: "rear",
+        labelTooltip: null,
+        //-------------------
+        onCreated: "",
+        onMounted: "",
+        onChange: "",
+        onValidate: "",
+      };
+    }
+    case "select": {
+      return {
+        fromAttr: true, // 判断特性标签
+        name,
+        label,
+        labelAlign: "",
+        defaultValue: "",
+        placeholder: "",
+        columnWidth: "200px",
+        size: "",
+        labelWidth: null,
+        labelHidden: false,
+        disabled: false,
+        hidden: false,
+        clearable: true,
+        filterable: false,
+        allowCreate: false,
+        remote: false,
+        automaticDropdown: false, //自动下拉
+        multiple: false,
+        multipleLimit: 0,
+        optionItems: [
+          { label: "select 1", value: 1 },
+          { label: "select 2", value: 2 },
+          { label: "select 3", value: 3 },
+        ],
+        required: false,
+        requiredHint: "",
+        validation: "",
+        validationHint: "",
+        //-------------------
+        customClass: "", //自定义css类名
+        labelIconClass: null,
+        labelIconPosition: "rear",
+        labelTooltip: null,
+        //-------------------
+        onCreated: "",
+        onMounted: "",
+        onRemoteQuery: "",
+        onChange: "",
+        onFocus: "",
+        onBlur: "",
+        onValidate: "",
+      };
+    }
+    case "radio": {
+      return {
+        fromAttr: true, // 判断特性标签
+        name,
+        label,
+        labelAlign: "",
+        defaultValue: null,
+        columnWidth: "200px",
+        size: "",
+        displayStyle: "inline",
+        buttonStyle: false,
+        border: false,
+        labelWidth: null,
+        labelHidden: false,
+        disabled: false,
+        hidden: false,
+        optionItems: [
+          { label: "radio 1", value: 1 },
+          { label: "radio 2", value: 2 },
+          { label: "radio 3", value: 3 },
+        ],
+        required: false,
+        requiredHint: "",
+        validation: "",
+        validationHint: "",
+        //-------------------
+        customClass: "", //自定义css类名
+        labelIconClass: null,
+        labelIconPosition: "rear",
+        labelTooltip: null,
+        //-------------------
+        onCreated: "",
+        onMounted: "",
+        onChange: "",
+        onValidate: "",
+      };
+    }
+    case "checkbox": {
+      return {
+        fromAttr: true, // 判断特性标签
+        name,
+        label,
+        labelAlign: "",
+        defaultValue: [],
+        columnWidth: "200px",
+        size: "",
+        displayStyle: "inline",
+        buttonStyle: false,
+        border: false,
+        labelWidth: null,
+        labelHidden: false,
+        disabled: false,
+        hidden: false,
+        optionItems: [
+          { label: "check 1", value: 1 },
+          { label: "check 2", value: 2 },
+          { label: "check 3", value: 3 },
+        ],
+        required: false,
+        requiredHint: "",
+        validation: "",
+        validationHint: "",
+        //-------------------
+        customClass: "", //自定义css类名
+        labelIconClass: null,
+        labelIconPosition: "rear",
+        labelTooltip: null,
+        //-------------------
+        onCreated: "",
+        onMounted: "",
+        onChange: "",
+        onValidate: "",
+      };
+    }
+    case "switch": {
+      return {
+        fromAttr: true,
+        name,
+        label,
+        labelAlign: "",
+        defaultValue: null,
+        columnWidth: "200px",
+        labelWidth: null,
+        labelHidden: false,
+        disabled: false,
+        hidden: false,
+        //-------------------
+        customClass: "", //自定义css类名
+        labelIconClass: null,
+        labelIconPosition: "rear",
+        labelTooltip: null,
+        switchWidth: 40,
+        activeText: "",
+        inactiveText: "",
+        activeColor: null,
+        inactiveColor: null,
+        //-------------------
+        onCreated: "",
+        onMounted: "",
+        onChange: "",
+        onValidate: "",
+      };
+    }
+    case "person": {
+      return {
+        fromAttr: true, // 判断特性标签
+        name,
+        label,
+        labelAlign: "",
+        defaultValue: "",
+        placeholder: "",
+        columnWidth: "200px",
+        size: "",
+        labelWidth: null,
+        labelHidden: false,
+        disabled: false,
+        hidden: false,
+        clearable: true,
+        filterable: false,
+        allowCreate: false,
+        remote: false,
+        automaticDropdown: false, //自动下拉
+        multiple: false,
+        multipleLimit: 0,
+        optionItems: [
+          { label: "select 1", value: 1 },
+          { label: "select 2", value: 2 },
+          { label: "select 3", value: 3 },
+        ],
+        required: false,
+        requiredHint: "",
+        validation: "",
+        validationHint: "",
+        //-------------------
+        customClass: "", //自定义css类名
+        labelIconClass: null,
+        labelIconPosition: "rear",
+        labelTooltip: null,
+        //-------------------
+        onCreated: "",
+        onMounted: "",
+        onRemoteQuery: "",
+        onChange: "",
+        onFocus: "",
+        onBlur: "",
+        onValidate: "",
+      };
+    }
+    case "dept": {
+      return {
+        fromAttr: true, // 判断特性标签
+        name,
+        label,
+        labelAlign: "",
+        defaultValue: "",
+        placeholder: "",
+        columnWidth: "200px",
+        size: "",
+        labelWidth: null,
+        labelHidden: false,
+        disabled: false,
+        hidden: false,
+        clearable: true,
+        filterable: false,
+        allowCreate: false,
+        remote: false,
+        automaticDropdown: false, //自动下拉
+        multiple: false,
+        multipleLimit: 0,
+        optionItems: [
+          { label: "select 1", value: 1 },
+          { label: "select 2", value: 2 },
+          { label: "select 3", value: 3 },
+        ],
+        required: false,
+        requiredHint: "",
+        validation: "",
+        validationHint: "",
+        //-------------------
+        customClass: "", //自定义css类名
+        labelIconClass: null,
+        labelIconPosition: "rear",
+        labelTooltip: null,
+        //-------------------
+        onCreated: "",
+        onMounted: "",
+        onRemoteQuery: "",
+        onChange: "",
+        onFocus: "",
+        onBlur: "",
+        onValidate: "",
+      };
+    }
+    case "group": {
+      return {
+        fromAttr: true, // 判断特性标签
+        name,
+        label,
+        labelAlign: "",
+        defaultValue: "",
+        placeholder: "",
+        columnWidth: "200px",
+        size: "",
+        labelWidth: null,
+        labelHidden: false,
+        disabled: false,
+        hidden: false,
+        clearable: true,
+        filterable: false,
+        allowCreate: false,
+        remote: false,
+        automaticDropdown: false, //自动下拉
+        multiple: false,
+        multipleLimit: 0,
+        optionItems: [
+          { label: "select 1", value: 1 },
+          { label: "select 2", value: 2 },
+          { label: "select 3", value: 3 },
+        ],
+        required: false,
+        requiredHint: "",
+        validation: "",
+        validationHint: "",
+        //-------------------
+        customClass: "", //自定义css类名
+        labelIconClass: null,
+        labelIconPosition: "rear",
+        labelTooltip: null,
+        //-------------------
+        onCreated: "",
+        onMounted: "",
+        onRemoteQuery: "",
+        onChange: "",
+        onFocus: "",
+        onBlur: "",
+        onValidate: "",
+      };
+    }
     default:
       break;
   }
@@ -291,30 +611,30 @@ export const widgetsOpts = [
     label: "日期范围",
     value: "dateRange",
   },
-  // {
-  //   label: "颜色选择",
-  //   value: "color",
-  // },
-  // {
-  //   label: "下拉单选",
-  //   value: "select",
-  // },
+  {
+    label: "颜色选择",
+    value: "color",
+  },
+  {
+    label: "下拉单选",
+    value: "select",
+  },
   // {
   //   label: "树型选择",
   //   value: "treeSelect",
   // },
-  // {
-  //   label: "单选",
-  //   value: "radio",
-  // },
-  // {
-  //   label: "勾选",
-  //   value: "checkbox",
-  // },
-  // {
-  //   label: "开关",
-  //   value: "switch",
-  // },
+  {
+    label: "单选",
+    value: "radio",
+  },
+  {
+    label: "勾选",
+    value: "checkbox",
+  },
+  {
+    label: "开关",
+    value: "switch",
+  },
   // {
   //   label: "文件",
   //   value: "upload",
@@ -327,16 +647,16 @@ export const widgetsOpts = [
   //   label: "字典",
   //   value: "dict",
   // },
-  // {
-  //   label: "人员",
-  //   value: "person",
-  // },
-  // {
-  //   label: "部门",
-  //   value: "dept",
-  // },
-  // {
-  //   label: "集团",
-  //   value: "group",
-  // },
+  {
+    label: "人员",
+    value: "person",
+  },
+  {
+    label: "部门",
+    value: "dept",
+  },
+  {
+    label: "集团",
+    value: "group",
+  },
 ];

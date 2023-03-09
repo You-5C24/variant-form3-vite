@@ -100,7 +100,6 @@ export default {
       type: Object,
       default: () => ({}),
     },
-    childTableData: Array,
   },
   provide() {
     return {

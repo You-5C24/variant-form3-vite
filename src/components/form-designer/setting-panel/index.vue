@@ -251,6 +251,7 @@ export default {
     designer: Object,
     selectedWidget: Object,
     formConfig: Object,
+    selectOptionFromOio: Object,
     globalDsv: {
       type: Object,
       default: () => ({}),
@@ -354,6 +355,18 @@ export default {
         this.selectedWidget.options.label,
         this.selectedWidget.id
       );
+      if (val === "person") {
+        this.selectedWidget.options.optionItems =
+          this.selectOptionFromOio.personOption;
+      }
+      if (val === "dept") {
+        this.selectedWidget.options.optionItems =
+          this.selectOptionFromOio.deptOption;
+      }
+      if (val === "group") {
+        this.selectedWidget.options.optionItems =
+          this.selectOptionFromOio.groupOption;
+      }
     },
     showEventCollapse() {
       if (this.designerConfig["eventCollapse"] === undefined) {

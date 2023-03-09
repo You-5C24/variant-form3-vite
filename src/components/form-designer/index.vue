@@ -9,7 +9,6 @@
         <el-header class="toolbar-header">
           <toolbar-panel
             :designer="designer"
-            :childTableData="childTableData"
             :global-dsv="globalDsv"
             ref="toolbarRef"
           >
@@ -47,6 +46,7 @@
           :selected-widget="designer.selectedWidget"
           :form-config="designer.formConfig"
           :global-dsv="globalDsv"
+          :selectOptionFromOio="selectOptionFromOio"
           @edit-event-handler="testEEH"
         />
       </el-aside>
@@ -129,10 +129,11 @@ export default {
       type: Array,
       default: () => [],
     },
-
-    childTableData: {
-      type: Array,
-      default: () => [],
+    selectOptionFromOio: {
+      type: Object,
+      default: () => {
+        personOption: [];
+      },
     },
 
     /* 全局数据源变量 */
@@ -170,13 +171,13 @@ export default {
       },
       deep: true,
     },
-    // tempAttrFiledList: {
-    //   handler(val) {
-    //     this.initAttrFieldList(val);
-    //     this.fixInitAttrFields();
-    //   },
-    //   deep: true,
-    // },
+    tempAttrFiledList: {
+      handler(val) {
+        this.initAttrFieldList(val);
+        this.fixInitAttrFields();
+      },
+      deep: true,
+    },
   },
   computed: {
     ...mapState(useAttrFieldsStore, ["attrFieldList"]),
