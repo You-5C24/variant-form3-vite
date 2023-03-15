@@ -51,6 +51,57 @@ export const getInputFieldConfig = (name) => {
   };
 };
 
+export const getSelectFieldConfig = (name) => {
+  return {
+    type: "select",
+    icon: "select-field",
+    formItemFlag: true,
+    options: {
+      fromAttr: true, // 判断特性标签
+      name: "",
+      label: name,
+      labelAlign: "",
+      defaultValue: "",
+      placeholder: "",
+      columnWidth: "200px",
+      size: "",
+      labelWidth: null,
+      labelHidden: false,
+      disabled: false,
+      hidden: false,
+      clearable: true,
+      filterable: false,
+      allowCreate: false,
+      remote: false,
+      automaticDropdown: false, //自动下拉
+      multiple: false,
+      multipleLimit: 0,
+      optionItems: [
+        { label: "select 1", value: 1 },
+        { label: "select 2", value: 2 },
+        { label: "select 3", value: 3 },
+      ],
+      required: false,
+      requiredHint: "",
+      validation: "",
+      validationHint: "",
+      //-------------------
+      customClass: "", //自定义css类名
+      labelIconClass: null,
+      labelIconPosition: "rear",
+      labelTooltip: null,
+      //-------------------
+      onCreated: "",
+      onMounted: "",
+      onRemoteQuery: "",
+      onChange: "",
+      onFocus: "",
+      onBlur: "",
+      onValidate: "",
+    },
+  };
+};
+
 export const getFieldType = (adaptType) => {
   const typeMap = {
     text: "input",
@@ -660,3 +711,72 @@ export const widgetsOpts = [
     value: "group",
   },
 ];
+
+export const widgetsOptWithValueType = {
+  数值型: [
+    {
+      label: "数字",
+      value: "number",
+    },
+  ],
+  描述型: [
+    {
+      label: "文本",
+      value: "text",
+    },
+    {
+      label: "多行文本",
+      value: "textarea",
+    },
+    {
+      label: "颜色选择",
+      value: "color",
+    },
+    {
+      label: "单选",
+      value: "radio",
+    },
+    {
+      label: "勾选",
+      value: "checkbox",
+    },
+    {
+      label: "开关",
+      value: "switch",
+    },
+  ],
+  选择型: [
+    {
+      label: "下拉单选",
+      value: "select",
+    },
+    {
+      label: "人员",
+      value: "person",
+    },
+    {
+      label: "部门",
+      value: "dept",
+    },
+    {
+      label: "集团",
+      value: "group",
+    },
+  ],
+  时间型: [
+    {
+      label: "日期",
+      value: "date",
+    },
+    {
+      label: "日期范围",
+      value: "dateRange",
+    },
+  ],
+  组织型: [
+    {
+      label: "人员",
+      value: "person",
+    },
+  ],
+};

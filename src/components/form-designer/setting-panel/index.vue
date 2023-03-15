@@ -230,10 +230,10 @@ import i18n from "@/utils/i18n";
 import eventBus from "@/utils/event-bus";
 import emitter from "@/utils/emitter";
 import { propertyRegistered } from "@/components/form-designer/setting-panel/propertyRegister";
-import { widgetsOpts } from "../widget-panel/attrFieldConfig";
 import {
   getFieldType,
   getFieldOptions,
+  widgetsOptWithValueType,
 } from "@/components/form-designer/widget-panel/attrFieldConfig";
 const { COMMON_PROPERTIES, ADVANCED_PROPERTIES, EVENT_PROPERTIES } =
   WidgetProperties;
@@ -262,7 +262,7 @@ export default {
     return {
       designerConfig: this.getDesignerConfig(),
       activeAdaptType: null,
-      options: widgetsOpts,
+      options: [],
       scrollerHeight: 0,
 
       activeTab: "2",
@@ -299,6 +299,7 @@ export default {
           this.activeTab = "1";
           if (val.options?.fromAttr) {
             this.activeAdaptType = val.adaptType;
+            this.options = widgetsOptWithValueType[val.basic.valueType];
           }
         }
       },

@@ -171,13 +171,13 @@ export default {
       },
       deep: true,
     },
-    tempAttrFiledList: {
-      handler(val) {
-        this.initAttrFieldList(val);
-        this.fixInitAttrFields();
-      },
-      deep: true,
-    },
+    // tempAttrFiledList: {
+    //   handler(val) {
+    //     this.initAttrFieldList(val);
+    //     this.fixInitAttrFields();
+    //   },
+    //   deep: true,
+    // },
   },
   computed: {
     ...mapState(useAttrFieldsStore, ["attrFieldList"]),
@@ -207,7 +207,7 @@ export default {
           id: "27466608057271339",
           name: "单据编号",
           code: "BILL_CODE",
-          valueType: "描述型",
+          valueType: "选择型",
           public: true,
           speciesId: "27466605935445024",
           belongId: "358227208847888384",

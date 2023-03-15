@@ -1,5 +1,8 @@
 import { defineStore } from "pinia";
-import { getInputFieldConfig } from "@/components/form-designer/widget-panel/attrFieldConfig";
+import {
+  getInputFieldConfig,
+  getSelectFieldConfig,
+} from "@/components/form-designer/widget-panel/attrFieldConfig";
 
 export const useAttrFieldsStore = defineStore("attrFields", {
   state: () => ({
@@ -9,7 +12,18 @@ export const useAttrFieldsStore = defineStore("attrFields", {
     initAttrFieldList(list) {
       this.attrFieldList = [];
       list.map((item) => {
-        const temp = getInputFieldConfig(item.name);
+        let temp = null;
+        switch (item.valueType) {
+          case "描述型":
+            temp = getInputFieldConfig(item.name);
+            break;
+          case "选择型":
+            temp = getSelectFieldConfig(item.name);
+            break;
+          default:
+            temp = getInputFieldConfig(item.name);
+        }
+
         temp.basic = item;
         this.attrFieldList.push(temp);
       });
